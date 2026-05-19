@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+dry_run="false"
+if [[ "${1:-}" == "--dry-run" ]]; then
+  dry_run="true"
+fi
+
+if [[ "$dry_run" == "true" ]]; then
+  echo "DRY RUN: would sync root AGENTS.md references into tool adapters"
+  find adapters -type f | sort
+  exit 0
+fi
+
+./scripts/multimodel-bootstrap codex
+./scripts/multimodel-bootstrap claude
+./scripts/multimodel-bootstrap gemini
+./scripts/multimodel-bootstrap cursor
+echo "adapter sync complete"

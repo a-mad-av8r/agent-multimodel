@@ -1,29 +1,58 @@
 # agent-multimodel
 
-**Run Claude, Codex, and Gemini on the same codebase with shared memory**
+Shared project protocol for multi-model agent teams.
 
-> 🔜 **Coming Soon** — Part of the [Agent Cortex](https://github.com/a-mad-av8r/agent-cortex) series.
+The future is not one model, one tool, one chat window. It is Claude, Codex,
+Gemini, Cursor, and future tools working on the same project without each tool's
+private memory becoming the source of truth.
 
----
+This repo provides a small project protocol plus thin adapters for common agent
+tools.
 
-## Piece 6 of 7
+## Quick Start
 
-This repo is part of **Agent Cortex** — an open-source multi-agent collaboration system built for real production use.
+```bash
+git clone https://github.com/a-mad-av8r/agent-multimodel
+cd agent-multimodel
+./scripts/multimodel-check
+./scripts/multimodel-bootstrap codex
+./scripts/multimodel-bootstrap gemini
+./scripts/multimodel-sync --dry-run
+```
 
-| Piece | Repo | Status |
-|-------|------|--------|
-| 1. Memory | [agent-memory](https://github.com/a-mad-av8r/agent-memory) | ✅ **Live** |
-| 2. Telepathic Link | [agent-telepathy](https://github.com/a-mad-av8r/agent-telepathy) | 🔜 Coming Soon |
-| 3. Handoffs | [agent-handoffs](https://github.com/a-mad-av8r/agent-handoffs) | 🔜 Coming Soon |
-| 4. Roles | [agent-roles](https://github.com/a-mad-av8r/agent-roles) | 🔜 Coming Soon |
-| 5. Retention | [agent-retention](https://github.com/a-mad-av8r/agent-retention) | 🔜 Coming Soon |
-| 6. Multi-Tool | [agent-multimodel](https://github.com/a-mad-av8r/agent-multimodel) | 🔜 Coming Soon |
-| 7. Full Cortex | [agent-cortex](https://github.com/a-mad-av8r/agent-cortex) | 🔜 Coming Soon |
+The bootstrap command copies a tool-specific adapter into `.agent-adapters/` so
+you can inspect what each tool should read at session start.
 
-⭐ **Start with [Agent Memory](https://github.com/a-mad-av8r/agent-memory)** — it's live and ready to use.
+## What Is Included
+
+- `AGENTS.md` as the model-agnostic project protocol.
+- Adapters for Codex, Claude, Gemini, and Cursor.
+- `scripts/multimodel-bootstrap`, `scripts/multimodel-check`, and
+  `scripts/multimodel-sync`.
+- Examples for two-model handoff and three-agent launch flow.
+- Docs for the shared protocol and adapter pattern.
+
+## What Is Deliberately Out
+
+- EnGenAI model-routing policy.
+- Cost controls and customer environment controls.
+- Provider credentials or private model configuration.
+- Internal platform automation.
+
+## Series Map
+
+| Part | Repo | Focus |
+| --- | --- | --- |
+| 1 | [agent-cortex](https://github.com/a-mad-av8r/agent-cortex) | Operating memory core |
+| 2 | [agent-telepathy](https://github.com/a-mad-av8r/agent-telepathy) | Event awareness |
+| 3 | [agent-handoffs](https://github.com/a-mad-av8r/agent-handoffs) | Structured transfer |
+| 4 | [agent-roles](https://github.com/a-mad-av8r/agent-roles) | Role boundaries |
+| 5 | [agent-retention](https://github.com/a-mad-av8r/agent-retention) | Memory lifecycle |
+| 6 | [agent-multimodel](https://github.com/a-mad-av8r/agent-multimodel) | Shared protocol across tools |
 
 ## Author
 
-**Amad Malik** — Founder + CEO/CTO of Adaptech AI Ltd, building EnGenAI ([engenai.app](https://engenai.app)).
+Amad Malik - Founder and CEO/CTO of Adaptech AI Ltd, building EnGenAI
+([engenai.app](https://engenai.app)).
 
-[LinkedIn](https://www.linkedin.com/in/amadmalik/) · [GitHub](https://github.com/a-mad-av8r)
+[LinkedIn](https://www.linkedin.com/in/amadmalik/) | [GitHub](https://github.com/a-mad-av8r)

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+required=(
+  "AGENTS.md"
+  "adapters/codex/AGENTS.md"
+  "adapters/claude/CLAUDE.md"
+  "adapters/gemini/GEMINI.md"
+  "adapters/cursor/rules.md"
+  "docs/shared-project-protocol.md"
+  "docs/tool-adapter-pattern.md"
+)
+
+for file in "${required[@]}"; do
+  if [[ ! -f "$file" ]]; then
+    echo "missing $file" >&2
+    exit 1
+  fi
+done
+
+echo "OK multimodel protocol and adapters are present"
